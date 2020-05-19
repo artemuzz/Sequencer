@@ -11,16 +11,15 @@ Help: search "Extensions" in wiki
 from TDStoreTools import StorageManager
 TDF = op.TDModules.mod.TDFunctions
 
-class Indicators:
+class Steps:
 	"""
 	PitchKnobs description
 	"""
 	def __init__(self, ownerComp):
 		# The component to which this extension is attached
 		self.ownerComp = ownerComp
-		self.indicators = ops('indicator*')
+		self.steps = [step.Value for step in ops('step*')]
 		# properties
-		TDF.createProperty(self, 'Indicator', value=self.indicators, dependable=True,
-						   readOnly=True)
-
-						   
+		TDF.createProperty(self, 'StepActive', value=self.steps, dependable=True,
+						   readOnly=False)
+		print(self.steps)
